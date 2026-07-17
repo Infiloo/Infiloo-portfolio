@@ -13,6 +13,14 @@
   var progressBar = document.getElementById("scrollProgress");
 
   // ----- Preloader counter + loadbar -----
+  function finishPreload() {
+    if (finishPreload.done) return;
+    finishPreload.done = true;
+    if (loadbar) loadbar.style.opacity = "0";
+    if (preloader) preloader.classList.add("is-done");
+    document.body.style.overflow = "";
+    revealAll();
+  }
   (function preload() {
     var progress = 0;
     var target = 100;
@@ -21,26 +29,22 @@
       if (progress >= target) {
         progress = target;
         clearInterval(timer);
-        setTimeout(finish, 350);
+        setTimeout(finishPreload, 300);
       }
       var p = Math.min(progress, target);
       if (loadbar) loadbar.style.transform = "scaleX(" + p / 100 + ")";
       if (countEl) countEl.textContent = Math.floor(p);
     }, 90);
-
-    function finish() {
-      if (loadbar) loadbar.style.opacity = "0";
-      if (preloader) preloader.classList.add("is-done");
-      document.body.style.overflow = "";
-      revealAll();
-    }
     document.body.style.overflow = "hidden";
+    window.addEventListener("load", function () { setTimeout(finishPreload, 400); });
+    setTimeout(finishPreload, 4000);
   })();
 
   // ----- Theme toggle -----
   function applyTheme(t) {
     root.setAttribute("data-theme", t);
     toggle.setAttribute("aria-pressed", String(t === "light"));
+    root.dispatchEvent(new Event("themechange"));
   }
   var stored = null;
   try { stored = localStorage.getItem("theme"); } catch (e) {}
@@ -138,7 +142,7 @@
   }
 
 
-  // ----- Starfield (rises from bottom on scroll) -----
+    // ----- Starfield (calm constant drift) -----
   (function stars(){
     var canvas=document.getElementById("stars");
     if(!canvas) return;
@@ -146,18 +150,18 @@
     if(reduce) return;
     var ctx=canvas.getContext("2d");
     var dpr=Math.min(window.devicePixelRatio||1,2);
-    var W,H,particles=[],scrollY=0,lastScroll=0,vel=0;
+    var W,H,particles=[],theme=root.getAttribute("data-theme")==="light";
     function size(){W=canvas.width=Math.floor(innerWidth*dpr);H=canvas.height=Math.floor(innerHeight*dpr);canvas.style.width=innerWidth+"px";canvas.style.height=innerHeight+"px";}
-    function make(initial){return{x:Math.random()*W,y:initial?Math.random()*H:H+Math.random()*40*dpr, r:(Math.random()*1.6+0.4)*dpr, s:Math.random()*0.4+0.15, a:Math.random()*0.5+0.25};}
-    function init(){size();var n=Math.round((innerWidth*innerHeight)/26000);particles=[];for(var i=0;i<n;i++)particles.push(make(true));}
-    function color(){var d=root.getAttribute("data-theme")==="light";return d?"0,0,0":"255,255,255";}
+    function make(initial){return{x:Math.random()*W,y:initial?Math.random()*H:H+Math.random()*60*dpr, r:(Math.random()*1.4+0.4)*dpr, s:Math.random()*0.35+0.12, a:Math.random()*0.45+0.2, ph:Math.random()*6.28};}
+    function init(){size();var n=Math.max(40,Math.round((innerWidth*innerHeight)/34000));particles=[];for(var i=0;i<n;i++)particles.push(make(true));}
     function frame(){
       ctx.clearRect(0,0,W,H);
-      var col=color();
+      var col=theme?"0,0,0":"255,255,255";
       for(var i=0;i<particles.length;i++){
         var p=particles[i];
-        p.y-=(p.s+vel*0.6)*dpr;
-        p.x+=Math.sin((p.y+p.r)*0.01)*0.2*dpr;
+        p.y-=p.s*dpr;
+        p.ph+=0.01;
+        p.x+=Math.sin(p.ph)*0.15*dpr;
         if(p.y< -10*dpr){particles[i]=make(false);}
         ctx.beginPath();
         ctx.fillStyle="rgba("+col+","+p.a+")";
@@ -166,8 +170,8 @@
       }
       requestAnimationFrame(frame);
     }
-    window.addEventListener("scroll",function(){scrollY=window.scrollY;vel=Math.min(6,(scrollY-lastScroll));lastScroll=scrollY;clearTimeout(stars._t);stars._t=setTimeout(function(){vel=0;},120);},{passive:true});
-    window.addEventListener("resize",init);
+    root.addEventListener("themechange",function(){theme=root.getAttribute("data-theme")==="light";});
+    var rt;window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(init,200);});
     init();requestAnimationFrame(frame);
   })();
 

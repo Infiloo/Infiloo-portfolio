@@ -65,8 +65,6 @@
   });
 
   // ----- Scroll: progress + nav hide + ring parallax (rAF throttled) -----
-  var ring = document.querySelector(".vision__ring");
-  var vision = document.getElementById("vision");
   var lastY = 0;
   var ticking = false;
   function update() {
@@ -76,12 +74,6 @@
     if (progressBar) progressBar.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
     if (y > lastY && y > 200) nav.classList.add("is-hidden");
     else nav.classList.remove("is-hidden");
-    if (ring && vision) {
-      var rect = vision.getBoundingClientRect();
-      var center = rect.top + rect.height / 2 - window.innerHeight / 2;
-      var offset = Math.max(-60, Math.min(60, -center * 0.04));
-      ring.style.transform = "translateY(calc(-50% + " + offset + "rem))";
-    }
     lastY = y;
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
@@ -144,6 +136,40 @@
       }
     });
   }
+
+
+  // ----- Starfield (rises from bottom on scroll) -----
+  (function stars(){
+    var canvas=document.getElementById("stars");
+    if(!canvas) return;
+    var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(reduce) return;
+    var ctx=canvas.getContext("2d");
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var W,H,particles=[],scrollY=0,lastScroll=0,vel=0;
+    function size(){W=canvas.width=Math.floor(innerWidth*dpr);H=canvas.height=Math.floor(innerHeight*dpr);canvas.style.width=innerWidth+"px";canvas.style.height=innerHeight+"px";}
+    function make(initial){return{x:Math.random()*W,y:initial?Math.random()*H:H+Math.random()*40*dpr, r:(Math.random()*1.6+0.4)*dpr, s:Math.random()*0.4+0.15, a:Math.random()*0.5+0.25};}
+    function init(){size();var n=Math.round((innerWidth*innerHeight)/26000);particles=[];for(var i=0;i<n;i++)particles.push(make(true));}
+    function color(){var d=root.getAttribute("data-theme")==="light";return d?"0,0,0":"255,255,255";}
+    function frame(){
+      ctx.clearRect(0,0,W,H);
+      var col=color();
+      for(var i=0;i<particles.length;i++){
+        var p=particles[i];
+        p.y-=(p.s+vel*0.6)*dpr;
+        p.x+=Math.sin((p.y+p.r)*0.01)*0.2*dpr;
+        if(p.y< -10*dpr){particles[i]=make(false);}
+        ctx.beginPath();
+        ctx.fillStyle="rgba("+col+","+p.a+")";
+        ctx.arc(p.x,p.y,p.r,0,6.283);
+        ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    }
+    window.addEventListener("scroll",function(){scrollY=window.scrollY;vel=Math.min(6,(scrollY-lastScroll));lastScroll=scrollY;clearTimeout(stars._t);stars._t=setTimeout(function(){vel=0;},120);},{passive:true});
+    window.addEventListener("resize",init);
+    init();requestAnimationFrame(frame);
+  })();
 
   // ----- Year -----
   if (yearEl) yearEl.textContent = new Date().getFullYear();

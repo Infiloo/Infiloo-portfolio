@@ -6,13 +6,14 @@
   <meta name="description" content="Leo (Infiloo) — developer of web, mobile, and self-hosted tools. Raspberry Pi, ESP32, and custom software." />
   <meta name="theme-color" content="#0b0d12" />
   <title>Leo — Infiloo</title>
-  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <canvas class="stars" id="stars" aria-hidden="true"></canvas>
   <!-- Preloader -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader__count"><span id="count">0</span></div>
@@ -162,19 +163,11 @@
       </div>
     </section>
 
-    <!-- STICKY VISION -->
+    <!-- VISION -->
     <section class="vision" id="vision">
-      <div class="vision__sticky">
-        <div class="container vision__inner">
-          <h2 class="vision__line serif reveal-mask"><span>Refined &amp; Bold</span></h2>
-          <h2 class="vision__line vision__line--2 serif reveal-mask"><span>Essential Software.</span></h2>
-          <div class="vision__ring" aria-hidden="true">
-            <div class="vision__ring-text">
-              <span>MAKING EXPERIENCES YOU DON'T FORGET — LEO / INFIL00 —&nbsp;</span>
-              <span>MAKING EXPERIENCES YOU DON'T FORGET — LEO / INFIL00 —&nbsp;</span>
-            </div>
-          </div>
-        </div>
+      <div class="container vision__inner vision__centered">
+        <h2 class="vision__line serif reveal-mask"><span>Refined &amp; Bold</span></h2>
+        <h2 class="vision__line vision__line--2 serif reveal-mask"><span>Essential Software.</span></h2>
       </div>
     </section>
 

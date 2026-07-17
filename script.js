@@ -111,6 +111,20 @@
   }
 
 
-    // ----- Year -----
+  
+  // ----- Message popup -----
+  var msgBtn=document.getElementById("msgBtn");
+  var msgWrap=msgBtn?msgBtn.closest(".msg-wrap"):null;
+  if(msgBtn&&msgWrap){
+    msgBtn.addEventListener("click",function(e){
+      e.stopPropagation();
+      var open=msgWrap.classList.toggle("is-open");
+      msgBtn.setAttribute("aria-expanded",String(open));
+    });
+    document.addEventListener("click",function(e){ if(!msgWrap.contains(e.target)){msgWrap.classList.remove("is-open");msgBtn.setAttribute("aria-expanded","false");} });
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape"){msgWrap.classList.remove("is-open");msgBtn.setAttribute("aria-expanded","false");} });
+  }
+
+  // ----- Year -----
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();

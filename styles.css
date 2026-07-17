@@ -95,15 +95,13 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   font-size: 1.05rem;
 }
-.brand__mark {
-  display: grid;
-  place-items: center;
+.brand__logo {
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #fff;
-  font-weight: 700;
+  object-fit: contain;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
 }
 .brand__alias { color: var(--text-muted); font-weight: 500; }
 
@@ -232,21 +230,6 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-muted);
 }
 .hero__cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.hero__badges {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin: 0 0 34px;
-}
-.hero__badges .badge-img {
-  height: 28px;
-  width: auto;
-  border-radius: 6px;
-  transition: transform 0.2s var(--ease);
-}
-.hero__badges .badge-img:hover { transform: translateY(-2px); }
-
 
 /* ---------- BUTTONS ---------- */
 .btn {

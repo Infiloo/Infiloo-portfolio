@@ -64,18 +64,30 @@
     }
   });
 
-  // ----- Nav hide on scroll down + scroll progress -----
+  // ----- Scroll: progress + nav hide + ring parallax (rAF throttled) -----
+  var ring = document.querySelector(".vision__ring");
+  var vision = document.getElementById("vision");
   var lastY = 0;
-  function onScroll() {
+  var ticking = false;
+  function update() {
+    ticking = false;
     var y = window.scrollY;
     var max = document.documentElement.scrollHeight - window.innerHeight;
     if (progressBar) progressBar.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
     if (y > lastY && y > 200) nav.classList.add("is-hidden");
     else nav.classList.remove("is-hidden");
+    if (ring && vision) {
+      var rect = vision.getBoundingClientRect();
+      var center = rect.top + rect.height / 2 - window.innerHeight / 2;
+      var offset = Math.max(-60, Math.min(60, -center * 0.04));
+      ring.style.transform = "translateY(calc(-50% + " + offset + "rem))";
+    }
     lastY = y;
   }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
   window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  window.addEventListener("resize", onScroll, { passive: true });
+  update();
 
   // ----- Scroll reveal -----
   var revealEls = document.querySelectorAll(".reveal, .reveal-mask");
@@ -109,18 +121,6 @@
   var track = document.getElementById("marqueeTrack");
   if (track) {
     track.innerHTML += track.innerHTML;
-  }
-
-  // ----- Vision ring parallax -----
-  var ring = document.querySelector(".vision__ring");
-  var vision = document.getElementById("vision");
-  if (ring && vision && "IntersectionObserver" in window) {
-    window.addEventListener("scroll", function () {
-      var rect = vision.getBoundingClientRect();
-      var center = rect.top + rect.height / 2 - window.innerHeight / 2;
-      var offset = Math.max(-60, Math.min(60, -center * 0.04));
-      ring.style.transform = "translateY(calc(-50% + " + offset + "rem))";
-    }, { passive: true });
   }
 
   // ----- Discord copy -----

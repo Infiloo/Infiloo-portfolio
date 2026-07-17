@@ -78,6 +78,11 @@ a { color: inherit; text-decoration: none; }
   transform: scaleX(0); transform-origin: left;
   z-index: 10001; transition: transform 0.4s var(--ease);
 }
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 100%;
+  background: var(--text); transform: scaleX(0); transform-origin: left;
+  z-index: 10000; transition: transform 0.1s linear;
+}
 
 /* ---------- NAV ---------- */
 .nav {
@@ -210,35 +215,46 @@ a { color: inherit; text-decoration: none; }
 .vision__line { font-size: clamp(48rem, 11vw, 170rem); line-height: 0.9; }
 .vision__line--2 { color: var(--text-muted); margin-left: 12vw; }
 .vision__ring {
-  position: absolute; right: -10vw; top: 50%; transform: translateY(-50%);
-  width: 60vw; max-width: 760rem; aspect-ratio: 1; border-radius: 50%;
-  border: 1px solid var(--line); display: flex; align-items: center; justify-content: center;
-  opacity: 0.5;
+  position: absolute; right: -6vw; top: 50%; transform: translateY(-50%);
+  width: 52vw; max-width: 680rem; aspect-ratio: 1; border-radius: 50%;
+  border: 1px solid var(--line);
+  opacity: 0.55; pointer-events: none;
 }
 .vision__ring-text {
-  width: 100%; height: 100%; position: relative;
-  animation: spin 26s linear infinite;
+  position: absolute; inset: 0;
+  animation: spin 30s linear infinite;
 }
 .vision__ring-text span {
-  position: absolute; top: 50%; left: 0; width: 100%;
-  transform-origin: center; font-size: 13rem; letter-spacing: 0.15em; text-transform: uppercase;
-  white-space: nowrap;
+  position: absolute; top: 50%; left: 50%;
+  width: 86%; height: 0;
+  font-family: var(--sans); font-size: 13rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  transform-origin: 0 0; white-space: nowrap;
 }
-.vision__ring-text span:first-child { transform: translateY(-50%) rotate(0deg); }
-.vision__ring-text span:last-child { transform: translateY(-50%) rotate(180deg); }
+.vision__ring-text span:first-child { transform: translate(-50%, 0) rotate(0deg); }
+.vision__ring-text span:last-child { transform: translate(-50%, 0) rotate(180deg); }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ---------- PARTNERS RING ---------- */
-.partners { padding: 140rem 0; border-top: 1px solid var(--line); }
-.ring {
-  position: relative; height: 60vw; max-height: 760rem; margin-top: 40rem;
-  display: flex; align-items: center; justify-content: center;
+/* ---------- MARQUEE ---------- */
+.marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden; padding: 34rem 0;
+  display: flex;
 }
-.ring__item {
-  position: absolute; font-family: var(--serif); font-size: clamp(18rem, 3vw, 40rem);
-  color: var(--text-muted);
-  transition: color 0.4s var(--ease);
+.marquee__track {
+  display: flex; align-items: center; gap: 40rem;
+  white-space: nowrap; flex-shrink: 0;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
 }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__item {
+  font-family: var(--serif); font-size: clamp(28rem, 5vw, 70rem);
+  line-height: 1; color: var(--text);
+}
+.marquee__dot { color: var(--text-muted); font-size: clamp(16rem, 2vw, 28rem); }
+@keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- STATEMENT ---------- */
 .statement { padding: 200rem 0; text-align: center; }
@@ -295,6 +311,16 @@ a { color: inherit; text-decoration: none; }
 .reveal-mask > span { display: inline-block; transform: translateY(105%); }
 .reveal.is-visible, .reveal-mask.is-visible > span { opacity: 1; transform: none; }
 
+/* ---------- WORD REVEAL ---------- */
+[data-split] { display: inline; }
+.word { display: inline-block; overflow: hidden; vertical-align: top; }
+.word > span {
+  display: inline-block; transform: translateY(110%);
+  transition: transform 0.7s var(--ease);
+  transition-delay: calc(var(--i, 0) * 0.045s);
+}
+.reveal.is-visible .word > span { transform: none; }
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767.98px) {
   .container { padding: 0 15rem; }
@@ -324,6 +350,6 @@ a { color: inherit; text-decoration: none; }
 
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto; }
-  .reveal, .reveal-mask > span { opacity: 1; transform: none; transition: none; }
+  .reveal, .reveal-mask > span, .word > span { opacity: 1; transform: none; transition: none; }
   .vision__ring-text { animation: none; }
 }

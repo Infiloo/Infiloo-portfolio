@@ -67,27 +67,6 @@ a { color: inherit; text-decoration: none; }
 }
 .skip-link:focus { left: 16px; }
 
-/* ---------- PRELOADER ---------- */
-.preloader {
-  position: fixed; inset: 0; z-index: 9999;
-  background: var(--bg);
-  display: flex; align-items: center; justify-content: center;
-  padding: 40rem;
-  transition: opacity 0.8s var(--ease), visibility 0.8s var(--ease);
-}
-.preloader.is-done { opacity: 0; visibility: hidden; }
-.preloader__count {
-  font-family: var(--serif);
-  font-size: 200rem;
-  line-height: 0.8;
-  color: var(--text);
-}
-.loadbar {
-  position: fixed; top: 0; left: 0; height: 4px; width: 100%;
-  background: var(--text);
-  transform: scaleX(0); transform-origin: left;
-  z-index: 10001; transition: transform 0.4s var(--ease);
-}
 .scroll-progress {
   position: fixed; top: 0; left: 0; height: 3px; width: 100%;
   background: var(--text); transform: scaleX(0); transform-origin: left;
@@ -339,12 +318,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 
-/* ---------- STARS CANVAS ---------- */
-.stars {
-  position: fixed; inset: 0; width: 100%; height: 100%;
-  z-index: 0; pointer-events: none; opacity: 0.9;
-}
-main, .nav, .footer, .preloader { position: relative; z-index: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto; }

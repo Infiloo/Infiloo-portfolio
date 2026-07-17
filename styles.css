@@ -254,6 +254,25 @@ a { color: inherit; text-decoration: none; }
 .contact__title { font-size: clamp(44rem, 9vw, 150rem); line-height: 0.9; margin: 20rem 0 30rem; }
 .contact__lead { font-size: 18rem; color: #aab; margin-bottom: 40rem; }
 .contact__actions { display: flex; gap: 16rem; justify-content: center; flex-wrap: wrap; }
+/* ---------- MESSAGE POPUP ---------- */
+.msg-wrap { position: relative; display: inline-block; }
+.msg-menu {
+  position: absolute; bottom: calc(100% + 14rem); left: 50%; transform: translateX(-50%) translateY(10rem);
+  min-width: 240rem; background: var(--bg-elev); border: 1px solid var(--line);
+  border-radius: 16rem; padding: 10rem; box-shadow: 0 24rem 60rem -20rem rgba(0,0,0,0.5);
+  display: flex; flex-direction: column; gap: 6rem; opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s var(--ease);
+  z-index: 20;
+}
+.msg-wrap.is-open .msg-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.msg-item {
+  display: flex; flex-direction: column; gap: 2rem; padding: 12rem 16rem;
+  border-radius: 12rem; transition: background 0.2s var(--ease);
+}
+.msg-item:hover { background: var(--line); }
+.msg-item__name { font-family: var(--serif); font-size: 18rem; color: var(--text); }
+.msg-item__sub { font-size: 12rem; color: var(--text-muted); }
+
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 16rem 34rem; border: 1px solid #fff; border-radius: 999px;

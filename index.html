@@ -18,6 +18,7 @@
     <div class="preloader__count"><span id="count">0</span></div>
   </div>
   <div class="loadbar" id="loadbar" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -52,7 +53,7 @@
         <p class="hero__eyebrow reveal-mask"><span>Developer — Maker — Self-Hoster</span></p>
         <h1 class="hero__title reveal-mask"><span>Leo</span></h1>
         <h2 class="hero__sub reveal-mask"><span>a.k.a. Infiloo</span></h2>
-        <p class="hero__lead reveal">I build web &amp; mobile apps, developer tools, and self-hosted systems — software that lives close to the hardware.</p>
+        <p class="hero__lead reveal" data-split>I build web &amp; mobile apps, developer tools, and self-hosted systems — software that lives close to the hardware.</p>
         <ul class="hero__chips reveal" aria-label="Primary hardware environment">
           <li>Raspberry Pi 500</li>
           <li>ESP32</li>
@@ -169,28 +170,25 @@
           <h2 class="vision__line vision__line--2 serif reveal-mask"><span>Essential Software.</span></h2>
           <div class="vision__ring" aria-hidden="true">
             <div class="vision__ring-text">
-              <span>LEO — INFIL00 — DEVELOPER — MAKER — SELF-HOSTER —&nbsp;</span>
-              <span>LEO — INFIL00 — DEVELOPER — MAKER — SELF-HOSTER —&nbsp;</span>
+              <span>MAKING EXPERIENCES YOU DON'T FORGET — LEO / INFIL00 —&nbsp;</span>
+              <span>MAKING EXPERIENCES YOU DON'T FORGET — LEO / INFIL00 —&nbsp;</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PARTNERS / PLATFORMS RING -->
-    <section class="partners" id="platforms">
-      <div class="container">
-        <div class="section__head reveal-mask"><span class="serif">Where to find me</span></div>
-      </div>
-      <div class="ring" id="ring" aria-hidden="true">
-        <span class="ring__item">GitHub</span>
-        <span class="ring__item">Gravatar</span>
-        <span class="ring__item">X / Twitter</span>
-        <span class="ring__item">Bluesky</span>
-        <span class="ring__item">Mastodon</span>
-        <span class="ring__item">Twitch</span>
-        <span class="ring__item">Laut.fm</span>
-        <span class="ring__item"> guns.lol</span>
+    <!-- MARQUEE -->
+    <section class="marquee" aria-label="Where to find me">
+      <div class="marquee__track" id="marqueeTrack">
+        <span class="marquee__item">GitHub</span><span class="marquee__dot">✦</span>
+        <span class="marquee__item">Gravatar</span><span class="marquee__dot">✦</span>
+        <span class="marquee__item">X / Twitter</span><span class="marquee__dot">✦</span>
+        <span class="marquee__item">Bluesky</span><span class="marquee__dot">✦</span>
+        <span class="marquee__item">Mastodon</span><span class="marquee__dot">✦</span>
+        <span class="marquee__item">Twitch</span><span class="marquee__dot">✦</span>
+        <span class="marquee__item">Laut.fm</span><span class="marquee__dot">✦</span>
+        <span class="marquee__item">guns.lol</span><span class="marquee__dot">✦</span>
       </div>
     </section>
 
@@ -285,7 +283,6 @@
       </div>
       <div class="footer__bottom">
         <span>© <span id="year">2026</span> Leo. Built with care.</span>
-        <span class="footer__made">Design inspired by kononenkogroup.com</span>
       </div>
     </div>
   </footer>

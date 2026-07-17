@@ -10,6 +10,7 @@
   var navLinks = document.getElementById("navLinks");
   var nav = document.getElementById("nav");
   var yearEl = document.getElementById("year");
+  var progressBar = document.getElementById("scrollProgress");
 
   // ----- Preloader counter + loadbar -----
   (function preload() {
@@ -63,14 +64,18 @@
     }
   });
 
-  // ----- Nav hide on scroll down -----
+  // ----- Nav hide on scroll down + scroll progress -----
   var lastY = 0;
-  window.addEventListener("scroll", function () {
+  function onScroll() {
     var y = window.scrollY;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (progressBar) progressBar.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
     if (y > lastY && y > 200) nav.classList.add("is-hidden");
     else nav.classList.remove("is-hidden");
     lastY = y;
-  }, { passive: true });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 
   // ----- Scroll reveal -----
   var revealEls = document.querySelectorAll(".reveal, .reveal-mask");
@@ -91,22 +96,31 @@
     revealAll();
   }
 
-  // ----- Orbital partners ring -----
-  var ring = document.getElementById("ring");
-  if (ring) {
-    var items = ring.querySelectorAll(".ring__item");
-    var n = items.length;
-    items.forEach(function (item, i) {
-      var angle = (360 / n) * i;
-      item.style.setProperty("--angle", angle + "deg");
-      item.style.transform =
-        "rotate(" + angle + "deg) translateY(calc(var(--ring-r, -28vw))) rotate(" + (-angle) + "deg)";
-    });
-    window.addEventListener("resize", function () {
-      var r = Math.min(window.innerWidth * 0.28, 340) + "px";
-      ring.style.setProperty("--ring-r", "-" + r);
-    });
-    ring.style.setProperty("--ring-r", "-" + Math.min(window.innerWidth * 0.28, 340) + "px");
+  // ----- Hero word-by-word reveal -----
+  document.querySelectorAll("[data-split]").forEach(function (el) {
+    var words = el.textContent.trim().split(/\s+/);
+    el.setAttribute("aria-label", el.textContent);
+    el.innerHTML = words.map(function (w, i) {
+      return '<span class="word" style="--i:' + i + '"><span>' + w + "</span></span>";
+    }).join(" ");
+  });
+
+  // ----- Seamless marquee (duplicate content) -----
+  var track = document.getElementById("marqueeTrack");
+  if (track) {
+    track.innerHTML += track.innerHTML;
+  }
+
+  // ----- Vision ring parallax -----
+  var ring = document.querySelector(".vision__ring");
+  var vision = document.getElementById("vision");
+  if (ring && vision && "IntersectionObserver" in window) {
+    window.addEventListener("scroll", function () {
+      var rect = vision.getBoundingClientRect();
+      var center = rect.top + rect.height / 2 - window.innerHeight / 2;
+      var offset = Math.max(-60, Math.min(60, -center * 0.04));
+      ring.style.transform = "translateY(calc(-50% + " + offset + "rem))";
+    }, { passive: true });
   }
 
   // ----- Discord copy -----

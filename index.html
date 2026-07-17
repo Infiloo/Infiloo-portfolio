@@ -4,310 +4,246 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Leo (Infiloo) — developer of web, mobile, and self-hosted tools. Raspberry Pi, ESP32, and custom software." />
+  <meta name="theme-color" content="#0b0d12" />
   <title>Leo — Infiloo</title>
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__count"><span id="count">0</span></div>
+  </div>
+  <div class="loadbar" id="loadbar" aria-hidden="true"></div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- NAV -->
   <header class="nav" id="nav">
-    <div class="container nav__inner">
-      <a class="brand" href="#top" aria-label="Leo — Infiloo home">
-        <img class="brand__logo" src="logo.png" alt="Leo / Infiloo logo" />
-        <span class="brand__text">Leo<span class="brand__alias">/ Infiloo</span></span>
+    <div class="nav__inner">
+      <a class="nav__logo" href="#top" aria-label="Leo — Infiloo home">
+        <img class="nav__logo-img" src="logo.png" alt="Leo / Infiloo" />
       </a>
-
       <nav class="nav__links" id="navLinks" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#hobbies">Hobbies</a>
-        <a href="#links">Links</a>
-        <a href="#contact">Contact</a>
+        <a class="link" href="#about">About</a>
+        <a class="link" href="#projects">Projects</a>
+        <a class="link" href="#skills">Skills</a>
+        <a class="link" href="#hobbies">Hobbies</a>
+        <a class="link" href="#links">Links</a>
+        <a class="link" href="#contact">Contact</a>
       </nav>
-
-      <div class="nav__actions">
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
-          <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2m8-8h2M2 12h2m13.66-5.66 1.41-1.41M4.93 19.07l1.41-1.41m0-11.32L4.93 4.93m14.14 14.14-1.41-1.41M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"/></svg>
-          <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-        </button>
-        <button class="nav__burger" id="navBurger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+        <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2m8-8h2M2 12h2m13.66-5.66 1.41-1.41M4.93 19.07l1.41-1.41m0-11.32L4.93 4.93m14.14 14.14-1.41-1.41M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"/></svg>
+        <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
   <main id="main">
     <!-- HERO -->
     <section class="hero" id="top">
-      <div class="hero__glow" aria-hidden="true"></div>
-      <div class="hero__grid" aria-hidden="true"></div>
       <div class="container hero__inner">
-        <p class="hero__eyebrow reveal">Developer · Maker · Self-Hoster</p>
-        <h1 class="hero__title reveal">
-          Leo
-          <span class="hero__alias">a.k.a. Infiloo</span>
-        </h1>
-        <p class="hero__lead reveal">
-          I build web &amp; mobile apps, developer tools, and self-hosted systems —
-          crafting software that lives close to the hardware.
-        </p>
+        <p class="hero__eyebrow reveal-mask"><span>Developer — Maker — Self-Hoster</span></p>
+        <h1 class="hero__title reveal-mask"><span>Leo</span></h1>
+        <h2 class="hero__sub reveal-mask"><span>a.k.a. Infiloo</span></h2>
+        <p class="hero__lead reveal">I build web &amp; mobile apps, developer tools, and self-hosted systems — software that lives close to the hardware.</p>
         <ul class="hero__chips reveal" aria-label="Primary hardware environment">
           <li>Raspberry Pi 500</li>
           <li>ESP32</li>
           <li>Microcontrollers</li>
         </ul>
-        <div class="hero__cta reveal">
-          <a class="btn btn--primary" href="#projects">View Projects</a>
-          <a class="btn btn--ghost" href="#links">Find me online</a>
-        </div>
       </div>
+      <div class="hero__scroll" aria-hidden="true">Scroll</div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="section" id="about">
+    <!-- ABOUT / INTRO -->
+    <section class="section intro" id="about">
       <div class="container">
-        <div class="section__head reveal">
-          <span class="section__index">01</span>
-          <h2 class="section__title">About</h2>
-        </div>
-        <div class="about reveal">
-          <p class="about__lead">
-            I'm Leo, also known as <strong>Infiloo</strong> — a developer focused on practical,
-            privacy-minded software across web, mobile, and embedded platforms.
-          </p>
-          <p class="about__body">
-            My work spans custom chat applications, cryptographic messaging tools, automation bots,
-            and media integrations. I'm most at home on a Raspberry Pi or an ESP32, wiring up
-            self-hosted services and small hardware experiments that make everyday computing feel
-            personal again.
-          </p>
-          <div class="about__meta">
-            <div class="meta-card">
-              <span class="meta-card__label">Primary Hardware</span>
-              <span class="meta-card__value">Raspberry Pi 500 · ESP32 · Microcontrollers</span>
-            </div>
-            <div class="meta-card">
-              <span class="meta-card__label">Environments</span>
-              <span class="meta-card__value">Linux (KDE Plasma) · Raspberry Pi OS · Self-hosted</span>
-            </div>
+        <div class="intro__grid">
+          <div class="intro__stats">
+            <div class="stat reveal"><span class="stat__num serif">Alias</span><span class="stat__label">Infiloo</span></div>
+            <div class="stat reveal"><span class="stat__num serif">Based</span><span class="stat__label">Germany</span></div>
+            <div class="stat reveal"><span class="stat__num serif">Focus</span><span class="stat__label">Software &amp; Hardware</span></div>
+          </div>
+          <div class="intro__body">
+            <p class="intro__lead reveal">I'm Leo, also known as <strong>Infiloo</strong> — a developer focused on practical, privacy-minded software across web, mobile, and embedded platforms.</p>
+            <p class="intro__text reveal">My work spans custom chat applications, cryptographic messaging tools, automation bots, and media integrations. I'm most at home on a Raspberry Pi or an ESP32, wiring up self-hosted services and small hardware experiments that make everyday computing feel personal again.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- PROJECTS -->
-    <section class="section" id="projects">
+    <section class="section projects" id="projects">
       <div class="container">
-        <div class="section__head reveal">
-          <span class="section__index">02</span>
-          <h2 class="section__title">Projects</h2>
-        </div>
-        <div class="grid grid--projects">
+        <div class="section__head reveal-mask"><span class="serif">Selected Projects</span><sup>(3+)</sup></div>
+        <div class="works">
 
-          <article class="card project reveal">
-            <div class="card__top">
-              <span class="badge badge--web">Web App</span>
+          <a class="work reveal" href="https://zusammenchat.netlify.app" target="_blank" rel="noopener noreferrer">
+            <span class="work__index">01</span>
+            <div class="work__body">
+              <h3 class="work__title">Zusammen Chat</h3>
+              <p class="work__desc">A custom web-chat application with user profiles, private channels, and a support account interface.</p>
             </div>
-            <h3 class="project__title">Zusammen Chat</h3>
-            <p class="project__desc">
-              A custom web-chat application featuring user profile management, separate private
-              messaging channels, and a dedicated support account interface.
-            </p>
-            <ul class="tags">
-              <li>Web frameworks</li>
-              <li>Database management</li>
-            </ul>
-            <a class="card__link" href="https://zusammenchat.netlify.app" target="_blank" rel="noopener noreferrer">Visit site →</a>
-          </article>
+            <span class="work__tag">Web App</span>
+          </a>
 
-          <article class="card project reveal">
-            <div class="card__top">
-              <span class="badge badge--mobile">Mobile App</span>
+          <a class="work reveal" href="https://shard.oneapp.dev" target="_blank" rel="noopener noreferrer">
+            <span class="work__index">02</span>
+            <div class="work__body">
+              <h3 class="work__title">Shard</h3>
+              <p class="work__desc">An independent mobile messaging app with cryptographic safety numbers, chat pinning, and video calls.</p>
             </div>
-            <h3 class="project__title">Shard</h3>
-            <p class="project__desc">
-              An independent mobile messaging application with cryptographic safety numbers,
-              customized recent chat pinning, and video call options.
-            </p>
-            <ul class="tags">
-              <li>Cryptographic safety</li>
-              <li>UI customization</li>
-              <li>Media streaming</li>
-            </ul>
-            <a class="card__link" href="https://shard.oneapp.dev" target="_blank" rel="noopener noreferrer">Visit site →</a>
-          </article>
+            <span class="work__tag">Mobile App</span>
+          </a>
 
-          <article class="card project reveal">
-            <div class="card__top">
-              <span class="badge badge--tool">Discord Bot</span>
+          <a class="work reveal" href="https://github.com/Infiloo/Veylora" target="_blank" rel="noopener noreferrer">
+            <span class="work__index">03</span>
+            <div class="work__body">
+              <h3 class="work__title">Veylora</h3>
+              <p class="work__desc">A delightful Discord bot bringing pure good vibes — hugs, pats, boops, and chaos.</p>
             </div>
-            <h3 class="project__title">Veylora</h3>
-            <p class="project__desc">
-              A delightful Discord bot that brings pure good vibes — hugs, pats, boops, chaos,
-              and whatever else you come up with. Delightful, perfectly unnecessary, 100% worth it.
-            </p>
-            <ul class="tags">
-              <li>discord.py v2</li>
-              <li>Slash commands</li>
-              <li>Per-server config</li>
-            </ul>
-            <a class="card__link" href="https://github.com/Infiloo/Veylora" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
-          </article>
+            <span class="work__tag">Discord Bot</span>
+          </a>
 
         </div>
       </div>
     </section>
 
     <!-- SKILLS -->
-    <section class="section" id="skills">
+    <section class="section skills" id="skills">
       <div class="container">
-        <div class="section__head reveal">
-          <span class="section__index">03</span>
-          <h2 class="section__title">Skills &amp; Tech Stack</h2>
-        </div>
-        <div class="grid grid--skills">
-
-          <div class="card skill-group reveal">
-            <h3 class="skill-group__title">Languages</h3>
-            <ul class="chips">
-              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>MicroPython</li>
-            </ul>
+        <div class="section__head reveal-mask"><span class="serif">Skills &amp; Tech Stack</span></div>
+        <div class="skills__grid">
+          <div class="skill-block reveal">
+            <h3 class="skill-block__title">Languages</h3>
+            <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>MicroPython</li></ul>
           </div>
-
-          <div class="card skill-group reveal">
-            <h3 class="skill-group__title">Frameworks &amp; Libraries</h3>
-            <ul class="chips">
-              <li>React</li><li>Tailwind CSS</li>
-            </ul>
+          <div class="skill-block reveal">
+            <h3 class="skill-block__title">Frameworks &amp; Libraries</h3>
+            <ul class="chips"><li>React</li><li>Tailwind CSS</li></ul>
           </div>
-
-          <div class="card skill-group reveal">
-            <h3 class="skill-group__title">Systems &amp; Environments</h3>
-            <ul class="chips">
-              <li>Linux (KDE Plasma)</li><li>Windows</li><li>Raspberry Pi OS</li><li>ESP32</li><li>Self-hosted</li>
-            </ul>
+          <div class="skill-block reveal">
+            <h3 class="skill-block__title">Systems &amp; Environments</h3>
+            <ul class="chips"><li>Linux (KDE Plasma)</li><li>Windows</li><li>Raspberry Pi OS</li><li>ESP32</li><li>Self-hosted</li></ul>
           </div>
-
         </div>
       </div>
     </section>
 
     <!-- HOBBIES -->
-    <section class="section" id="hobbies">
+    <section class="section hobbies" id="hobbies">
       <div class="container">
-        <div class="section__head reveal">
-          <span class="section__index">04</span>
-          <h2 class="section__title">Hobbies &amp; Interests</h2>
-        </div>
-        <div class="grid grid--hobbies">
-
-          <article class="card hobby reveal">
-            <span class="hobby__icon" aria-hidden="true">⚙️</span>
-            <h3 class="hobby__title">Self-Hosting &amp; Hardware</h3>
-            <p class="hobby__desc">
-              Hosting local services, running a local AI, and maintaining self-hosted bots.
-              Experimenting with Raspberry Pi and ESP32 for custom scripts and desktop environments.
-            </p>
+        <div class="section__head reveal-mask"><span class="serif">Hobbies &amp; Interests</span></div>
+        <div class="hobbies__grid">
+          <article class="hobby reveal">
+            <span class="hobby__num">01</span>
+            <h3 class="hobby__title serif">Self-Hosting &amp; Hardware</h3>
+            <p class="hobby__desc">Hosting local services, running a local AI, maintaining self-hosted bots, and experimenting with Raspberry Pi and ESP32.</p>
           </article>
-
-          <article class="card hobby reveal">
-            <span class="hobby__icon" aria-hidden="true">🎮</span>
-            <h3 class="hobby__title">Gaming &amp; Server Admin</h3>
-            <p class="hobby__desc">
-              Minecraft server administration — status displays, textures, and custom modding —
-              plus open-world survival and physics games like Roblox and No Man's Sky.
-            </p>
+          <article class="hobby reveal">
+            <span class="hobby__num">02</span>
+            <h3 class="hobby__title serif">Gaming &amp; Server Admin</h3>
+            <p class="hobby__desc">Minecraft server administration — status displays, textures, custom modding — plus Roblox and No Man's Sky.</p>
           </article>
-
-          <article class="card hobby reveal">
-            <span class="hobby__icon" aria-hidden="true">🎧</span>
-            <h3 class="hobby__title">Music &amp; Audio Streaming</h3>
-            <p class="hobby__desc">
-              Curating Spotify playlists, building automation bots for online radio streams
-              (such as Laut.fm), and integrating media across platforms.
-            </p>
+          <article class="hobby reveal">
+            <span class="hobby__num">03</span>
+            <h3 class="hobby__title serif">Music &amp; Audio Streaming</h3>
+            <p class="hobby__desc">Curating Spotify playlists, building automation bots for online radio streams like Laut.fm.</p>
           </article>
-
         </div>
       </div>
     </section>
 
-    <!-- LINKS -->
-    <section class="section" id="links">
+    <!-- STICKY VISION -->
+    <section class="vision" id="vision">
+      <div class="vision__sticky">
+        <div class="container vision__inner">
+          <h2 class="vision__line serif reveal-mask"><span>Refined &amp; Bold</span></h2>
+          <h2 class="vision__line vision__line--2 serif reveal-mask"><span>Essential Software.</span></h2>
+          <div class="vision__ring" aria-hidden="true">
+            <div class="vision__ring-text">
+              <span>LEO — INFIL00 — DEVELOPER — MAKER — SELF-HOSTER —&nbsp;</span>
+              <span>LEO — INFIL00 — DEVELOPER — MAKER — SELF-HOSTER —&nbsp;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS / PLATFORMS RING -->
+    <section class="partners" id="platforms">
       <div class="container">
-        <div class="section__head reveal">
-          <span class="section__index">05</span>
-          <h2 class="section__title">Links &amp; Profiles</h2>
-        </div>
+        <div class="section__head reveal-mask"><span class="serif">Where to find me</span></div>
+      </div>
+      <div class="ring" id="ring" aria-hidden="true">
+        <span class="ring__item">GitHub</span>
+        <span class="ring__item">Gravatar</span>
+        <span class="ring__item">X / Twitter</span>
+        <span class="ring__item">Bluesky</span>
+        <span class="ring__item">Mastodon</span>
+        <span class="ring__item">Twitch</span>
+        <span class="ring__item">Laut.fm</span>
+        <span class="ring__item"> guns.lol</span>
+      </div>
+    </section>
 
-        <div class="links-group reveal">
-          <h3 class="links-group__title">Digital Hubs &amp; Profiles</h3>
-          <div class="grid grid--links">
-            <a class="link-card" href="https://guns.lol/infiloo" target="_blank" rel="noopener noreferrer">
-              <span class="link-card__name">Personal Linktree</span>
-              <span class="link-card__url">guns.lol/infiloo</span>
-            </a>
-            <a class="link-card" href="https://gravatar.com/infiloo" target="_blank" rel="noopener noreferrer">
-              <span class="link-card__name">Gravatar Central Profile</span>
-              <span class="link-card__url">gravatar.com/infiloo <em>· gravatar.me/infiloo</em></span>
-            </a>
+    <!-- BIG STATEMENT -->
+    <section class="statement">
+      <div class="container">
+        <p class="statement__line serif reveal-mask"><span>Software that feels personal — built close to the metal.</span></p>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section class="section links" id="links">
+      <div class="container">
+        <div class="section__head reveal-mask"><span class="serif">Links &amp; Profiles</span></div>
+
+        <div class="link-group reveal">
+          <h3 class="link-group__title">Digital Hubs &amp; Profiles</h3>
+          <div class="link-list">
+            <a class="link-row" href="https://guns.lol/infiloo" target="_blank" rel="noopener noreferrer"><span class="link-row__name">Personal Linktree</span><span class="link-row__url">guns.lol/infiloo</span></a>
+            <a class="link-row" href="https://gravatar.com/infiloo" target="_blank" rel="noopener noreferrer"><span class="link-row__name">Gravatar Central Profile</span><span class="link-row__url">gravatar.com/infiloo · gravatar.me/infiloo</span></a>
           </div>
         </div>
 
-        <div class="links-group reveal">
-          <h3 class="links-group__title">Development &amp; Code</h3>
-          <div class="grid grid--links">
-            <a class="link-card" href="https://github.com/infiloo" target="_blank" rel="noopener noreferrer">
-              <span class="link-card__name">Explore Code Repositories</span>
-              <span class="link-card__url">github.com/infiloo</span>
-            </a>
+        <div class="link-group reveal">
+          <h3 class="link-group__title">Development &amp; Code</h3>
+          <div class="link-list">
+            <a class="link-row" href="https://github.com/infiloo" target="_blank" rel="noopener noreferrer"><span class="link-row__name">Explore Code Repositories</span><span class="link-row__url">github.com/infiloo</span></a>
           </div>
         </div>
 
-        <div class="links-group reveal">
-          <h3 class="links-group__title">Social &amp; Microblogging</h3>
-          <div class="grid grid--links">
-            <a class="link-card" href="https://x.com/infiloo6288" target="_blank" rel="noopener noreferrer">
-              <span class="link-card__name">X / Twitter</span>
-              <span class="link-card__url">x.com/infiloo6288 <em>· @infiloo6288</em></span>
-            </a>
-            <a class="link-card" href="https://bsky.app/profile/infiloo.bsky.social" target="_blank" rel="noopener noreferrer">
-              <span class="link-card__name">Bluesky Social</span>
-              <span class="link-card__url">bsky.app/profile/infiloo.bsky.social <em>· infiloo.bsky.social</em></span>
-            </a>
-            <a class="link-card" href="https://mastodon.social/@infiloo" target="_blank" rel="noopener noreferrer">
-              <span class="link-card__name">Mastodon Network</span>
-              <span class="link-card__url">mastodon.social/@infiloo <em>· infiloo@mastodon.social</em></span>
-            </a>
-            <a class="link-card" href="https://twitch.tv/infiloo6288" target="_blank" rel="noopener noreferrer">
-              <span class="link-card__name">Twitch Stream</span>
-              <span class="link-card__url">twitch.tv/infiloo6288</span>
-            </a>
+        <div class="link-group reveal">
+          <h3 class="link-group__title">Social &amp; Microblogging</h3>
+          <div class="link-list">
+            <a class="link-row" href="https://x.com/infiloo6288" target="_blank" rel="noopener noreferrer"><span class="link-row__name">X / Twitter</span><span class="link-row__url">x.com/infiloo6288 · @infiloo6288</span></a>
+            <a class="link-row" href="https://bsky.app/profile/infiloo.bsky.social" target="_blank" rel="noopener noreferrer"><span class="link-row__name">Bluesky Social</span><span class="link-row__url">bsky.app/profile/infiloo.bsky.social · infiloo.bsky.social</span></a>
+            <a class="link-row" href="https://mastodon.social/@infiloo" target="_blank" rel="noopener noreferrer"><span class="link-row__name">Mastodon Network</span><span class="link-row__url">mastodon.social/@infiloo · infiloo@mastodon.social</span></a>
+            <a class="link-row" href="https://twitch.tv/infiloo6288" target="_blank" rel="noopener noreferrer"><span class="link-row__name">Twitch Stream</span><span class="link-row__url">twitch.tv/infiloo6288</span></a>
           </div>
         </div>
 
-        <div class="links-group reveal">
-          <h3 class="links-group__title">Audio Streaming</h3>
-          <div class="grid grid--links">
-            <a class="link-card" href="https://stream.laut.fm/infiloocast" target="_blank" rel="noopener noreferrer">
-              <span class="link-card__name">Infiloo Cast (Radio Stream)</span>
-              <span class="link-card__url">stream.laut.fm/infiloocast</span>
-            </a>
+        <div class="link-group reveal">
+          <h3 class="link-group__title">Audio Streaming</h3>
+          <div class="link-list">
+            <a class="link-row" href="https://stream.laut.fm/infiloocast" target="_blank" rel="noopener noreferrer"><span class="link-row__name">Infiloo Cast (Radio Stream)</span><span class="link-row__url">stream.laut.fm/infiloocast</span></a>
           </div>
         </div>
 
-        <div class="links-group reveal">
-          <h3 class="links-group__title">Direct Contact</h3>
-          <div class="grid grid--links">
-            <button class="link-card link-card--copy" type="button" data-copy="infiloo" id="discordCopy">
-              <span class="link-card__name">Discord — @infiloo</span>
-              <span class="link-card__url">Click to copy username <em id="copyHint">(for developers)</em></span>
+        <div class="link-group reveal">
+          <h3 class="link-group__title">Direct Contact</h3>
+          <div class="link-list">
+            <button class="link-row link-row--copy" type="button" data-copy="infiloo" id="discordCopy">
+              <span class="link-row__name">Discord — @infiloo</span>
+              <span class="link-row__url">Click to copy username (for developers)</span>
             </button>
           </div>
         </div>
@@ -315,25 +251,42 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="section section--contact" id="contact">
-      <div class="container contact reveal">
-        <span class="section__index">06</span>
-        <h2 class="contact__title">Let's build something.</h2>
-        <p class="contact__lead">
-          The easiest way to reach me is through my Gravatar profile.
-        </p>
-        <div class="contact__actions">
-          <a class="btn btn--primary btn--lg" href="https://gravatar.com/infiloo" target="_blank" rel="noopener noreferrer">Contact via Gravatar</a>
-          <a class="btn btn--ghost btn--lg" href="mailto:you@example.com">Email me</a>
+    <section class="section contact" id="contact">
+      <div class="container contact__inner">
+        <div class="section__head reveal-mask"><span class="serif">Contact</span></div>
+        <h2 class="contact__title serif reveal-mask"><span>Let's build something.</span></h2>
+        <p class="contact__lead reveal">The easiest way to reach me is through my Gravatar profile.</p>
+        <div class="contact__actions reveal">
+          <a class="btn" href="https://gravatar.com/infiloo" target="_blank" rel="noopener noreferrer">Contact via Gravatar</a>
+          <a class="btn btn--ghost" href="mailto:you@example.com">Email me</a>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER (black) -->
   <footer class="footer">
     <div class="container footer__inner">
-      <span class="footer__brand">Leo <span>/ Infiloo</span></span>
-      <span class="footer__copy">© <span id="year">2026</span> Leo. Built with care.</span>
+      <div class="footer__brand serif">Infiloo</div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <span class="footer__label">Alias</span>
+          <span>Leo / Infiloo</span>
+        </div>
+        <div class="footer__col">
+          <span class="footer__label">Focus</span>
+          <span>Web · Mobile · Embedded</span>
+        </div>
+        <div class="footer__col">
+          <span class="footer__label">Profiles</span>
+          <a class="link" href="https://gravatar.com/infiloo" target="_blank" rel="noopener noreferrer">Gravatar</a>
+          <a class="link" href="https://github.com/infiloo" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span id="year">2026</span> Leo. Built with care.</span>
+        <span class="footer__made">Design inspired by kononenkogroup.com</span>
+      </div>
     </div>
   </footer>
 
